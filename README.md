@@ -1,6 +1,6 @@
 # Wordle Bot — an information-gain solver
 
-A Python bot for a Wordle-like API, built as an AI engineering interview exercise. It filters possible answers after each response and chooses guesses that split the remaining candidates using Shannon entropy. When the answer falls outside its dictionaries, it switches to letter discovery and constraint-based enumeration.
+A Python bot for a Wordle-like API, built in three hours for an AI engineering interview exercise. It filters possible answers after each response and chooses guesses that split the remaining candidates using Shannon entropy. When the answer falls outside its dictionaries, it switches to letter discovery and constraint-based enumeration.
 
 **What I learned:** Testing exposed a duplicate-letter rule that differed from standard Wordle. I changed the feedback model to match the API and used a 100-game diagnostic to separate dictionary coverage failures from guess-selection failures. In one diagnostic with a smaller word pool, 58 failures were due to answers missing from the lists; I have not established a success rate for the final expanded pool and fallback.
 
