@@ -10,18 +10,6 @@ A Python bot for a Wordle-like API, built as an AI engineering interview exercis
 
 ## Detailed design and development notes
 
-An entropy-based Wordle solver that plays against the Votee Wordle API
-(`https://wordle.votee.dev:8000`). Built for the first-round coding test of the
-Votee AI Engineer (Agents, Context & Evals) role.
-
-The bot connects to the API, makes guesses, filters its candidate pool against
-the response, and uses information theory to pick each subsequent guess. When
-the answer turns out to be outside the bot's word list (which the Votee API
-occasionally produces), it falls back to a two-phase letter-discovery +
-constraint-enumeration brute-force.
-
----
-
 ## The Task
 
 Votee provided an API that plays a Wordle-like puzzle. The task: write a program
