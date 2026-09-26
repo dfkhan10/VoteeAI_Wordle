@@ -1,4 +1,14 @@
-# Wordle Bot — Votee AI Engineer Interview
+# Wordle Bot — an information-gain solver
+
+A Python bot for a Wordle-like API, built as an AI engineering interview exercise. It filters possible answers after each response and chooses guesses that split the remaining candidates using Shannon entropy. When the answer falls outside its dictionaries, it switches to letter discovery and constraint-based enumeration.
+
+**What I learned:** Testing exposed a duplicate-letter rule that differed from standard Wordle. I changed the feedback model to match the API and used a 100-game diagnostic to separate dictionary coverage failures from guess-selection failures. In one diagnostic with a smaller word pool, 58 failures were due to answers missing from the lists; I have not established a success rate for the final expanded pool and fallback.
+
+**Try it:** `python3 wordle_bot.py` runs example games; `python3 wordle_bot.py --eval` runs the diagnostic. It needs `requests` and access to the Votee API.
+
+---
+
+## Detailed design and development notes
 
 An entropy-based Wordle solver that plays against the Votee Wordle API
 (`https://wordle.votee.dev:8000`). Built for the first-round coding test of the
@@ -36,8 +46,7 @@ The API exposes three endpoints — all return an array of
    alphabetic words from every `.txt` file in the directory. The pool currently
    holds **20,231 unique words**.
 2. **First guess: `SALET`.** Hardcoded to skip an expensive 20k-by-20k entropy
-   computation on turn 1. `SALET` is widely considered the optimal opener by
-   expected-information-gain analysis. (Previously used `CRANE`; switched after
+   computation on turn 1. `SALET` is a strong opener by expected-information-gain analysis. (Previously used `CRANE`; switched after
    testing.)
 3. **Filter.** After every guess, the candidate pool is filtered to words that
    would produce the observed pattern given the guess.
